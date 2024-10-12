@@ -1,0 +1,13 @@
+---
+- name: Create file
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Create ansible_test.txt file
+      file:
+        path: /home/Alberto/ansible_test.txt
+        state: touch
+        owner: Alberto
+        group: Alberto
+        mode: '0644'

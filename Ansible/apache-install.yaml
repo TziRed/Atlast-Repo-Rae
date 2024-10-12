@@ -1,0 +1,10 @@
+---
+- name: Install Apache #Thi is a description of the Playbook
+  hosts: webservers #This is the Target Group for this Playbook to run against
+  become: yes #To execute the Playbook using sudo
+
+  tasks:
+  - name: Install httpd package #This is a description of the task.
+    yum:
+      name: httpd #Thi is basically where we name the package
+      state: latest #Thi is the current desired status
