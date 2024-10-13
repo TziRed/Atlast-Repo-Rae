@@ -1,0 +1,15 @@
+---
+- name: Yum Playbook
+  hosts: sweats
+  become: yes
+
+  tasks:
+  - name: Remove Firewalld
+    yum:
+      name: firewalld
+      state: absent
+
+  - name: Install http
+    yum:
+      name: httpd
+      state: latest

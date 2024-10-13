@@ -1,0 +1,21 @@
+---
+- name: Create files
+  hosts: sweats
+  become: yes
+
+  tasks:
+    - name: Create a  "hello world" file
+      file:
+        path: /tmp/helloworld.txt
+        owner: ec2-user
+        group: ec2-user
+        mode: '0644'
+        state: touch
+
+    - name: Create a test directory
+      file:
+        path: /tmp/test
+        owner: ec2-user
+        group: ec2-user
+        mode: '0755'
+        state: directory
