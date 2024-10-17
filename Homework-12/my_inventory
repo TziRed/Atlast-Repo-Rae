@@ -1,0 +1,9 @@
+[Dev]
+3.140.88.87 #Instance-1
+
+[QA]
+13.59.189.170 #Ansible Client 1
+
+[Prod]
+ec2-3-141-15-251.us-east-2.compute.amazonaws.com #Ansible Client 2
+
