@@ -1,6 +1,0 @@
-- name: edit html file
-  lineinfile:
-    path: "{{ index_html_path }}"
-    line: I created this with Ansible
-    create: yes
-    state: present

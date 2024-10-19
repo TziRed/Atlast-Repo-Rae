@@ -4,5 +4,4 @@
   become: yes
   roles:
     - httpd_package
-    - httpd_service
     - httpd_index
