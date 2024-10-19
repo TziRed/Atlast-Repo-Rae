@@ -1,6 +1,6 @@
 ---
 - name: Use the shell
-  hosts: sweats
+  hosts: Dev
   become: yes
 
   tasks:

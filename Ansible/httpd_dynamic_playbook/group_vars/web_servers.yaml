@@ -1,0 +1,3 @@
+httpd_package: httpd
+httpd_service: httpd
+index_html_path: /var/www/html/index.html

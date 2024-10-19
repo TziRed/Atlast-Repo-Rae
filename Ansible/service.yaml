@@ -1,6 +1,6 @@
 ---
 - name: Manage our services
-  hosts: sweats
+  hosts: Dev
   become: yes
 
   tasks:

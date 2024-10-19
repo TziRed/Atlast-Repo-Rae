@@ -1,6 +1,6 @@
 ---
 - name: Write a text into files
-  hosts: sweats
+  hosts: Dev
   become: yes
 
   tasks:

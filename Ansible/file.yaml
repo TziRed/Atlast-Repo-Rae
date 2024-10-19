@@ -1,6 +1,6 @@
 ---
 - name: Create files
-  hosts: sweats
+  hosts: Dev
   become: yes
 
   tasks:

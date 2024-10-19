@@ -1,6 +1,6 @@
 ---
 - name: Ping the Webservers
-  hosts: sweats
+  hosts: Dev
   become: yes
 
   tasks:
