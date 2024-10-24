@@ -1,0 +1,6 @@
+---
+- name: Install and configure Apache server
+  hosts: Dev
+  become: yes
+  roles:
+    - webservers
