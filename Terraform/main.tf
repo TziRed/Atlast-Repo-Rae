@@ -1,11 +1,39 @@
-resource "aws_instance" "instance1" {
-  ami                         = "ami-050cd642fd83388e4"
-  associate_public_ip_address = true
-  availability_zone           = "us-east-2b"
-  instance_type               = "t2.micro"
-  key_name                    = "vm_key"
+data "aws_vpc" "existing_vpc" {
+  id = "vpc-0cfcf8cf6704050e4"
+}
 
-  tags = {
-    "Name" = "rae"
+resource "aws_security_group" "ssh_https_nfs" {
+  name        = "ssh_https_nfs"
+  description = "Security group for SSH, HTTPS, and NFS access"
+  vpc_id      = "vpc-0cfcf8cf6704050e4"
+
+  # Inbound rules
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["172.31.0.0/16"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["172.31.0.0/16"]
+  }
+
+  ingress {
+    from_port   = 2049
+    to_port     = 2049
+    protocol    = "tcp"
+    cidr_blocks = ["172.31.0.0/16"]
+  }
+
+  # Optional: Egress rules
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1" # Allows all outbound traffic
+    cidr_blocks = ["172.31.0.0/16"]
   }
 }
