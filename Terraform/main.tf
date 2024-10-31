@@ -8,21 +8,21 @@ resource "aws_security_group" "custom_sg" {
     from_port   = "22"
     to_port     = "22"
     protocol    = "tcp"
-    cidr_blocks = ["172.31.0.0/16"] # Change as necessary for security
+    cidr_blocks = ["0.0.0.0/0"] # Change as necessary for security
   }
 
   ingress {
     from_port   = "443"
     to_port     = "443"
     protocol    = "tcp"
-    cidr_blocks = ["172.31.0.0/16"] # Change as necessary for security
+    cidr_blocks = ["0.0.0.0/0"] # Change as necessary for security
   }
 
   egress {
     from_port   = "0"
     to_port     = "0"
     protocol    = "-1" # Allow all outbound traffic
-    cidr_blocks = ["172.31.0.0/16"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -32,6 +32,7 @@ resource "aws_instance" "atlasec2tf" {
   instance_type     = "t2.micro"
   key_name          = "vm_key"
   availability_zone = "us-east-2c"
+  security_groups   = [aws_security_group.custom_sg.id]
 
   # EBS volume configuration
   root_block_device {
@@ -50,7 +51,7 @@ resource "aws_instance" "atlasec2tf" {
               EOF
 
   # Associate the custom security group
-  vpc_security_group_ids = [aws_security_group.custom_sg.id]
+
 
   tags = {
     Name = "atlasec2tf"
