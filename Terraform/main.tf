@@ -1,39 +1,58 @@
-data "aws_vpc" "existing_vpc" {
-  id = "vpc-0cfcf8cf6704050e4"
+# Assingment 14, task 4. (Terraform)
+# Create a custom security group
+resource "aws_security_group" "custom_sg" {
+  name        = "custom_sg"
+  description = "Allow SSH and HTTPS access"
+
+  ingress {
+    from_port   = "22"
+    to_port     = "22"
+    protocol    = "tcp"
+    cidr_blocks = ["172.31.0.0/16"] # Change as necessary for security
+  }
+
+  ingress {
+    from_port   = "443"
+    to_port     = "443"
+    protocol    = "tcp"
+    cidr_blocks = ["172.31.0.0/16"] # Change as necessary for security
+  }
+
+  egress {
+    from_port   = "0"
+    to_port     = "0"
+    protocol    = "-1" # Allow all outbound traffic
+    cidr_blocks = ["172.31.0.0/16"]
+  }
 }
 
-resource "aws_security_group" "ssh_https_nfs" {
-  name        = "ssh_https_nfs"
-  description = "Security group for SSH, HTTPS, and NFS access"
-  vpc_id      = "vpc-0cfcf8cf6704050e4"
+# Create the EC2 instance
+resource "aws_instance" "atlasec2tf" {
+  ami               = "ami-00eb69d236edcfaf8" # Ubuntu 22.04 AMI in us-east-2
+  instance_type     = "t2.micro"
+  key_name          = "vm_key"
+  availability_zone = "us-east-2c"
 
-  # Inbound rules
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["172.31.0.0/16"]
+  # EBS volume configuration
+  root_block_device {
+    volume_size = 8 # Size in GB
+    volume_type = "gp2"
   }
 
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["172.31.0.0/16"]
-  }
+  # User data script to install and set up a web application
+  user_data = <<-EOF
+              #!/bin/bash
+              apt update -y
+              apt install apache2 -y
+              systemctl start apache2
+              systemctl enable apache2
+              echo "<h1>Hello from atlasec2tf!</h1>" > /var/www/html/index.html
+              EOF
 
-  ingress {
-    from_port   = 2049
-    to_port     = 2049
-    protocol    = "tcp"
-    cidr_blocks = ["172.31.0.0/16"]
-  }
+  # Associate the custom security group
+  vpc_security_group_ids = [aws_security_group.custom_sg.id]
 
-  # Optional: Egress rules
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1" # Allows all outbound traffic
-    cidr_blocks = ["172.31.0.0/16"]
+  tags = {
+    Name = "atlasec2tf"
   }
 }
