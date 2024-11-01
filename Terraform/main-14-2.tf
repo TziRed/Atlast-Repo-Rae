@@ -6,7 +6,7 @@
 # resource "aws_security_group" "ssh_https_nfs" {
 #   name        = "ssh_https_nfs"
 #   description = "Security group for SSH, HTTPS, and NFS access"
-#   vpc_id      = "vpc-0cfcf8cf6704050e4"
+#   vpc_id      = "vpc-0cfcf8cf6704050e4" #Or you can call it our with "data.aws_vpc.exisiting_vpc.id"
 
 #   # Inbound rules
 #   ingress {
