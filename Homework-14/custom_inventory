@@ -1,0 +1,13 @@
+[Dev]
+18.190.149.37 #Ansible Client 1
+
+[QA]
+3.147.50.170 #Ansible Client 2
+
+[Prod]
+18.220.224.38 # Ansible Client 3
+
+[web_servers]
+18.190.149.37 #Ansible Client 1
+3.147.50.170 #Ansible Client 2
+18.220.224.38 ansible_user=ubuntu # Ansible Client 3 (Ubuntu machine)

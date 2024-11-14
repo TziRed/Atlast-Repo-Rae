@@ -10,7 +10,7 @@
       group: wheel
       append: yes
       comment: Alberto Diego
-  
+      
   - name: Create group Alberto
     group:
         name: Alberto

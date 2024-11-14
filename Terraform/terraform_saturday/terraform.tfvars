@@ -1,0 +1,20 @@
+# This file is used for imputing the values of our variables
+al2_ami            = "ami-0374badf0de443688"
+ubuntu_ami         = "ami-00eb69d236edcfaf8"
+instance_type      = "t2.micro"
+az_2a              = "us-east-2a"
+az_2b              = "us-east-2b"
+key_name           = "vm_key"
+security_groups    = ["sg-0b564b69f0f2cd87f"]
+instance_name      = "tf_test_ec2"
+root_volume_size   = 8
+root_volume_type   = "gp2"
+cidr_range_16      = "10.0.0.0/16"
+vpc_name           = "tf_test_vpc"
+cidr_range_subnet1 = "10.0.0.0/20"
+cidr_range_subnet2 = "10.0.16.0/20"
+subnet_1_name      = "tf_subnet_test1"
+subnet_2_name      = "tf_subnet_test2"
+igw_name           = "tf_igw_test"
+route_table_cidr   = "0.0.0.0/0"
+route_table_name   = "tf_route_table_test"

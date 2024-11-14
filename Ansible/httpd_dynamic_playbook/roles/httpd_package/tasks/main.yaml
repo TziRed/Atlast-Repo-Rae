@@ -1,0 +1,5 @@
+- name: install httpd
+  yum: 
+    name: "{{ httpd_package }}"
+    state: latest
+  notify: Start Httpd

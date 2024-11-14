@@ -1,0 +1,4 @@
+apache_package: httpd
+apache_service: httpd
+user_apache: apache
+group_apache: apache
