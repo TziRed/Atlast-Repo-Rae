@@ -87,6 +87,8 @@ resource "aws_eks_node_group" "tfeksnodegroup" {
   depends_on = [
     aws_iam_role_policy_attachment.tfpolicyattach2,
     aws_iam_role_policy_attachment.tfpolicyattach3,
-    aws_iam_role_policy_attachment.tfpolicyattach4
+    aws_iam_role_policy_attachment.tfpolicyattach4,
+    aws_iam_role_policy_attachment.tfpolicyattach5,
+    aws_eks_cluster.tfekscluster
   ]
 }
