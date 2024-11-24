@@ -1,2 +1,0 @@
-http_service: firewalld
-http_port: 80/tcp

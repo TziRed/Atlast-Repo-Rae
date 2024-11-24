@@ -1,8 +1,0 @@
----
-- name: Ping the Webservers
-  hosts: Dev
-  become: yes
-
-  tasks:
-    - name: Ping our hosts
-      ping:
